@@ -47,6 +47,7 @@
                             <strong>Status:</strong> ${event.status.type.description}<br>
                             <strong>Data:</strong> ${new Date(event.date).toLocaleDateString()}<br>
                             <strong>Hora:</strong> ${new Date(event.date).toLocaleTimeString()}<br>
+                            <strong>Resultado:</strong> ${event.competitions[0].competitors[0].score} - ${event.competitions[0].competitors[1].score}<br>
                         `;
                         ul.appendChild(li);
                     });
