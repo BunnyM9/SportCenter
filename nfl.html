@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados da NBA</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>NBA</h1>
+    </header>
+    <div id="resultados">
+        <ul></ul>
+    </div>
+
+    <script>
+        // Fazendo uma solicitação à API da ESPN para os resultados da NBA
+        fetch('http://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard')
+            .then(response => response.json())
+            .then(data => {
+                const resultadosDiv = document.getElementById('resultados');
+                const ul = resultadosDiv.querySelector('ul');
+
+                // Verificando se há jogos na data atual
+                if (data && data.events) {
+                    data.events.forEach(event => {
+                        const li = document.createElement('li');
+                        li.textContent = `Jogo: ${event.name} - Status: ${event.status.type.description}`;
+                        ul.appendChild(li);
+                    });
+                } else {
+                    const li = document.createElement('li');
+                    li.textContent = 'Não há jogos programados para hoje.';
+                    ul.appendChild(li);
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar dados da API:', error);
+            });
+    </script>
+</body>
+</html>
