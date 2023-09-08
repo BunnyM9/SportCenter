@@ -18,7 +18,7 @@
             padding: 0;
         }
         li {
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -40,9 +40,14 @@
 
                 // Verificando se há jogos na data atual
                 if (data && data.events && data.events.length > 0) {
-                    data.events[0].competitions.forEach(competition => {
+                    data.events.forEach(event => {
                         const li = document.createElement('li');
-                        li.textContent = `Jogo: ${competition.competitors[0].team.displayName} vs. ${competition.competitors[1].team.displayName} - Status: ${competition.status.type.description}`;
+                        li.innerHTML = `
+                            <strong>Jogo:</strong> ${event.name}<br>
+                            <strong>Status:</strong> ${event.status.type.description}<br>
+                            <strong>Data:</strong> ${new Date(event.date).toLocaleDateString()}<br>
+                            <strong>Hora:</strong> ${new Date(event.date).toLocaleTimeString()}<br>
+                        `;
                         ul.appendChild(li);
                     });
                 } else {
