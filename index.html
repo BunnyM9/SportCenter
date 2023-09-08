@@ -68,15 +68,35 @@
     </footer>
 
     <script>
-        // JavaScript para carregar o conteúdo das páginas
+        // JavaScript para carregar o conteúdo das páginas externas
         const conteudoDiv = document.getElementById('conteudo');
         const botoes = document.querySelectorAll('nav button');
 
+        // URLs das páginas externas
+        const urlsExternas = [
+            'pagina1.html',
+            'pagina2.html',
+            'pagina3.html',
+            'pagina4.html',
+            'pagina5.html'
+        ];
+
+        // Função para carregar o conteúdo da página externa
+        function carregarPaginaExterna(index) {
+            fetch(urlsExternas[index])
+                .then(response => response.text())
+                .then(data => {
+                    conteudoDiv.innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar a página externa:', error);
+                });
+        }
+
+        // Adicionar eventos de clique aos botões
         botoes.forEach((botao, index) => {
             botao.addEventListener('click', () => {
-                // Carregue o conteúdo da página desejada aqui.
-                // Substitua o conteúdo atual de conteudoDiv pelo conteúdo da página carregada.
-                conteudoDiv.innerHTML = `<p>Conteúdo da Página ${index + 1}</p>`;
+                carregarPaginaExterna(index);
             });
         });
     </script>
