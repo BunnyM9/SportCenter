@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultados da NBA</title>
+    <title>Resultados da NFL</title>
     <style>
         body {
             background-color: black;
@@ -24,15 +24,15 @@
 </head>
 <body>
     <header>
-        <h1>NBA</h1>
+        <h1>NFL</h1>
     </header>
     <div id="resultados">
         <ul></ul>
     </div>
 
     <script>
-        // Fazendo uma solicitação à API da ESPN para os resultados da NBA
-        fetch('http://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard')
+        // Fazendo uma solicitação à API da ESPN para os resultados da NFL
+        fetch('http://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard')
             .then(response => response.json())
             .then(data => {
                 const resultadosDiv = document.getElementById('resultados');
