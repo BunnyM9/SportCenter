@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Site</title>
+    <title>Meu Site de Esportes</title>
     <style>
         /* Estilos CSS */
         body {
@@ -33,7 +33,12 @@
             margin: 5px;
         }
 
-        #conteudo {
+        #apresentacao {
+            text-align: center;
+            margin: 20px;
+        }
+
+        #resultados {
             text-align: center;
             margin: 20px;
         }
@@ -51,7 +56,7 @@
 </head>
 <body>
     <header>
-        <h1>Meu Site</h1>
+        <h1>Meu Site de Esportes</h1>
         <nav>
             <button id="botao1">Botão 1</button>
             <button id="botao2">Botão 2</button>
@@ -60,25 +65,29 @@
             <button id="botao5">Botão 5</button>
         </nav>
     </header>
-    <div id="conteudo">
-        <!-- O conteúdo carregado será exibido aqui -->
+    <div id="apresentacao">
+        <h2>Seja bem-vindo ao nosso site de esportes!</h2>
+        <p>Aqui você encontrará informações sobre eventos esportivos e resultados em tempo real.</p>
+    </div>
+    <div id="resultados">
+        <!-- Aqui serão exibidos os resultados esportivos -->
     </div>
     <footer>
-        &copy; 2023 Meu Site
+        &copy; 2023 Meu Site de Esportes
     </footer>
 
     <script>
         // JavaScript para carregar o conteúdo das páginas externas
-        const conteudoDiv = document.getElementById('conteudo');
+        const resultadosDiv = document.getElementById('resultados');
         const botoes = document.querySelectorAll('nav button');
 
         // URLs das páginas externas
         const urlsExternas = [
             'https://bunnym9.github.io/SportCenter/premier.html',
-            'pagina2.html',
-            'pagina3.html',
-            'pagina4.html',
-            'pagina5.html'
+            'https://bunnym9.github.io/SportCenter/nfl.html',
+            'https://bunnym9.github.io/SportCenter/nba.html',
+            'https://bunnym9.github.io/SportCenter/italiana.html',
+            'https://bunnym9.github.io/SportCenter/espanhol.html'
         ];
 
         // Função para carregar o conteúdo da página externa
@@ -86,7 +95,7 @@
             fetch(urlsExternas[index])
                 .then(response => response.text())
                 .then(data => {
-                    conteudoDiv.innerHTML = data;
+                    resultadosDiv.innerHTML = data;
                 })
                 .catch(error => {
                     console.error('Erro ao carregar a página externa:', error);
