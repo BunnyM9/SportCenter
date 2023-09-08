@@ -31,8 +31,8 @@
     </div>
 
     <script>
-        // Fazendo uma solicitação à API da ESPN para os resultados da NFL
-        fetch('http://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard')
+        // Fazendo uma solicitação à API da ESPN para os resultados da NFL (usando HTTPS)
+        fetch('https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard')
             .then(response => response.json())
             .then(data => {
                 const resultadosDiv = document.getElementById('resultados');
