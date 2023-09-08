@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sport Center</title>
+    <title>Meu Site de Esportes</title>
     <style>
         /* Estilos CSS */
         body {
@@ -43,6 +43,11 @@
             margin: 20px;
         }
 
+        #resultados iframe {
+            width: 100%;
+            height: 500px; /* Altura do iframe */
+        }
+
         footer {
             background-color: #333;
             color: white;
@@ -56,21 +61,22 @@
 </head>
 <body>
     <header>
-        <h1>Sport Center</h1>
+        <h1>Meu Site de Esportes</h1>
         <nav>
-            <button id="botao1">Premier</button>
-            <button id="botao2">NFL</button>
-            <button id="botao3">NBA</button>
-            <button id="botao4">italiano</button>
-            <button id="botao5">espanhol</button>
+            <button id="botao1">premier</button>
+            <button id="botao2">nfl</button>
+            <button id="botao3">Botão 3</button>
+            <button id="botao4">Botão 4</button>
+            <button id="botao5">Botão 5</button>
         </nav>
     </header>
     <div id="apresentacao">
-        <h2>Seja bem-vindo ao nosso site<h2>
-        <p>Aqui você encontrará resultados em tempo real.</p>
+        <h2>Seja bem-vindo ao nosso site de esportes!</h2>
+        <p>Aqui você encontrará informações sobre eventos esportivos e resultados em tempo real.</p>
     </div>
     <div id="resultados">
-        <!-- Aqui serão exibidos os resultados esportivos -->
+        <!-- O iframe para exibir a página externa -->
+        <iframe id="iframeResultado" src="" frameborder="0"></iframe>
     </div>
     <footer>
         &copy; 2023 Meu Site de Esportes
@@ -78,28 +84,22 @@
 
     <script>
         // JavaScript para carregar o conteúdo das páginas externas
-        const resultadosDiv = document.getElementById('resultados');
+        const iframeResultado = document.getElementById('iframeResultado');
         const botoes = document.querySelectorAll('nav button');
 
         // URLs das páginas externas
         const urlsExternas = [
             'https://bunnym9.github.io/SportCenter/premier.html',
-            'https://bunnym9.github.io/SportCenter/nfl.html',
-            'https://bunnym9.github.io/SportCenter/nba.html',
-            'https://bunnym9.github.io/SportCenter/italiana.html',
-            'https://bunnym9.github.io/SportCenter/espanhol.html'
+            'https://bunnym9.github.io/SportCenter/nfl.html,
+            'pagina3.html',
+            'pagina4.html',
+            'pagina5.html'
         ];
 
-        // Função para carregar o conteúdo da página externa
+        // Função para carregar a página externa no iframe
         function carregarPaginaExterna(index) {
-            fetch(urlsExternas[index])
-                .then(response => response.text())
-                .then(data => {
-                    resultadosDiv.innerHTML = data;
-                })
-                .catch(error => {
-                    console.error('Erro ao carregar a página externa:', error);
-                });
+            const urlExterna = urlsExternas[index];
+            iframeResultado.src = urlExterna;
         }
 
         // Adicionar eventos de clique aos botões
