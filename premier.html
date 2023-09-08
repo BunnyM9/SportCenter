@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio Premier</title>
+    <title>Resultados da Premier League</title>
     <style>
         body {
             background-color: black;
@@ -13,11 +13,41 @@
             text-align: center;
             padding: 20px;
         }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>Premier League</h1>
     </header>
+    <div id="resultados">
+        <ul></ul>
+    </div>
+
+    <script>
+        // Fazendo uma solicitação à API da ESPN
+        fetch('http://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/teams')
+            .then(response => response.json())
+            .then(data => {
+                const resultadosDiv = document.getElementById('resultados');
+                const ul = resultadosDiv.querySelector('ul');
+                
+                // Iterando pelos times da Premier League e exibindo seus nomes
+                data.sports[0].leagues[0].teams.forEach(team => {
+                    const li = document.createElement('li');
+                    li.textContent = team.team.displayName;
+                    ul.appendChild(li);
+                });
+            })
+            .catch(error => {
+                console.error('Erro ao buscar dados da API:', error);
+            });
+    </script>
 </body>
 </html>
