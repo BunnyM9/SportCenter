@@ -39,10 +39,10 @@
                 const ul = resultadosDiv.querySelector('ul');
 
                 // Verificando se há jogos na data atual
-                if (data && data.events) {
-                    data.events.forEach(event => {
+                if (data && data.events && data.events.length > 0) {
+                    data.events[0].competitions.forEach(competition => {
                         const li = document.createElement('li');
-                        li.textContent = `Jogo: ${event.name} - Status: ${event.status.type.description}`;
+                        li.textContent = `Jogo: ${competition.competitors[0].team.displayName} vs. ${competition.competitors[1].team.displayName} - Status: ${competition.status.type.description}`;
                         ul.appendChild(li);
                     });
                 } else {
