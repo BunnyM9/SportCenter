@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados e Notícias da Serie A Italiana</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Serie A Italiana</h1>
+    </header>
+    <div id="resultados">
+        <h2>Resultados</h2>
+        <ul></ul>
+    </div>
+    <div id="noticias">
+        <h2>Notícias da Serie A Italiana</h2>
+        <ul></ul>
+    </div>
+
+    <script>
+        // Função para carregar notícias da Serie A Italiana
+        function carregarNoticias() {
+            // Fazendo uma solicitação à API da ESPN para as notícias da Serie A Italiana (usando HTTPS)
+            fetch('http://site.api.espn.com/apis/site/v2/sports/soccer/ita.1/teams')
+                .then(response => response.json())
+                .then(data => {
+                    const noticiasDiv = document.getElementById('noticias');
+                    const ul = noticiasDiv.querySelector('ul');
+
+                    // Verificando se há notícias disponíveis
+                    if (data && data.teams && data.teams.length > 0) {
+                        data.teams.forEach(team => {
+                            const li = document.createElement('li');
+                            li.innerHTML = `
+                                <strong>Nome:</strong> ${team.team.displayName}<br>
+                                <strong>Abreviação:</strong> ${team.team.abbreviation}<br>
+                            `;
+                            ul.appendChild(li);
+                        });
+                    } else {
+                        const li = document.createElement('li');
+                        li.textContent = 'Não há notícias disponíveis no momento.';
+                        ul.appendChild(li);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar notícias da Serie A Italiana:', error);
+                });
+        }
+
+        // Função para carregar resultados da Serie A Italiana
+        function carregarResultados() {
+            // Fazendo uma solicitação à API da ESPN para os resultados da Serie A Italiana (usando HTTPS)
+            fetch('http://site.api.espn.com/apis/site/v2/sports/soccer/ita.1/scoreaboard')
+                .then(response => response.json())
+                .then(data => {
+                    const resultadosDiv = document.getElementById('resultados');
+                    const ul = resultadosDiv.querySelector('ul');
+
+                    // Verificando se há jogos na data atual
+                    if (data && data.events && data.events.length > 0) {
+                        data.events.forEach(event => {
+                            const li = document.createElement('li');
+                            li.innerHTML = `
+                                <strong>Jogo:</strong> ${event.name}<br>
+                                <strong>Status:</strong> ${event.status.type.description}<br>
+                                <strong>Data:</strong> ${new Date(event.date).toLocaleDateString()}<br>
+                                <strong>Hora:</strong> ${new Date(event.date).toLocaleTimeString()}<br>
+                                <strong>Resultado:</strong> ${event.competitions[0].competitors[0].score} - ${event.competitions[0].competitors[1].score}<br>
+                            `;
+                            ul.appendChild(li);
+                        });
+                    } else {
+                        const li = document.createElement('li');
+                        li.textContent = 'Não há jogos programados para hoje.';
+                        ul.appendChild(li);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar resultados da Serie A Italiana:', error);
+                });
+        }
+
+        // Carregar resultados e notícias
+        carregarResultados();
+        carregarNoticias();
+    </script>
+</body>
+</html>
