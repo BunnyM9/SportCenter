@@ -62,20 +62,6 @@
             padding: 10px;
             /* Remova a propriedade position: absolute */
         }
-          .gallery {
-            display: flex;
-            overflow: hidden;
-        }
-
-        .image {
-            width: 100%;
-            transition: transform 0.5s ease;
-        }
-
-        .image img {
-            max-width: 100%;
-            height: auto;
-        }
     </style>
 </head>
 <body>
@@ -94,17 +80,9 @@
         <!-- O iframe para exibir a página externa -->
         <iframe id="iframeResultado" src=""></iframe>
         <!-- Conteúdo de carregamento -->
-        <div class="gallery">
-        <div class="image">
-            <img src="https://imgur.com/WSCWoNT.png" alt="Imagem 1">
+        <div id="loading">
+            <p>Carregando...</p>
         </div>
-        <div class="image">
-            <img src="https://imgur.com/8vNvByO.png" alt="Imagem 2">
-        </div>
-        <div class="image">
-            <img src="https://imgur.com/GCv6K4q.png" alt="Imagem 3">
-        </div>
-    </div>
     </div>
     <footer>
         &copy; 2023 Meu Site de Esportes
@@ -146,7 +124,6 @@
                 carregarPaginaExterna(index);
             });
         });
-    
     </script>
 </body>
 </html>
