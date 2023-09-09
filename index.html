@@ -63,20 +63,20 @@
             /* Remova a propriedade position: absolute */
         }
         .gallery {
-    display: flex;
-    overflow: hidden;
-}
+            display: flex;
+            overflow: hidden;
+        }
 
-.image {
-    flex: 1; /* Distribui o espaço igualmente entre as imagens */
-    padding: 10px; /* Adicione espaçamento entre as imagens, se desejado */
-    text-align: center; /* Alinha o conteúdo no centro */
-}
+        .image {
+            flex: 1; /* Distribui o espaço igualmente entre as imagens */
+            padding: 10px; /* Adicione espaçamento entre as imagens, se desejado */
+            text-align: center; /* Alinha o conteúdo no centro */
+        }
 
-.image img {
-    max-width: 100%; /* Garante que as imagens não ultrapassem a largura da div .image */
-    height: auto;
-}
+        .image img {
+            max-width: 100%; /* Garante que as imagens não ultrapassem a largura da div .image */
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -85,7 +85,7 @@
         <nav>
             <button id="botao1">Premier</button>
             <button id="botao2">NFL</button>
-            
+            <button id="botao3">Italiana</button>
         </nav>
     </header>
     <div id="apresentacao">
@@ -98,17 +98,17 @@
         <!-- Conteúdo de carregamento -->
         <div id="loading">
             <!-- Conteúdo da galeria de imagens -->
-    <div class="gallery">
-        <div class="image">
-            <img src="https://imgur.com/WSCWoNT.png" alt="Imagem 1">
-        </div>
-        <div class="image">
-            <img src="https://imgur.com/8vNvByO.png" alt="Imagem 2">
-        </div>
-        <div class="image">
-            <img src="https://imgur.com/GCv6K4q.png" alt="Imagem 3">
-        </div>
-    </div>
+            <div class="gallery">
+                <div class="image">
+                    <img src="https://imgur.com/WSCWoNT.png" alt="Imagem 1">
+                </div>
+                <div class="image">
+                    <img src="https://imgur.com/8vNvByO.png" alt="Imagem 2">
+                </div>
+                <div class="image">
+                    <img src="https://imgur.com/GCv6K4q.png" alt="Imagem 3">
+                </div>
+            </div>
         </div>
     </div>
     <footer>
@@ -124,8 +124,8 @@
         // URLs das páginas externas
         const urlsExternas = [
             'https://bunnym9.github.io/SportCenter/premier.html',
-            'https://bunnym9.github.io/SportCenter/nfl.html'
-          
+            'https://bunnym9.github.io/SportCenter/nfl.html',
+            'https://bunnym9.github.io/SportCenter/italiana.html'
         ];
 
         // Função para carregar a página externa no iframe e mostrar o conteúdo
