@@ -48,6 +48,11 @@
         #resultados iframe {
             width: 100%;
             height: 500px; /* Altura do iframe */
+            display: none; /* Ocultar o iframe inicialmente */
+        }
+
+        #loading {
+            text-align: center;
         }
 
         footer {
@@ -74,6 +79,10 @@
     <div id="resultados">
         <!-- O iframe para exibir a página externa -->
         <iframe id="iframeResultado" src=""></iframe>
+        <!-- Conteúdo de carregamento -->
+        <div id="loading">
+            <p>Carregando...</p>
+        </div>
     </div>
     <footer>
         &copy; 2023 Meu Site de Esportes
@@ -83,6 +92,7 @@
         // JavaScript para carregar o conteúdo das páginas externas
         const iframeResultado = document.getElementById('iframeResultado');
         const botoes = document.querySelectorAll('nav button');
+        const loadingDiv = document.getElementById('loading');
 
         // URLs das páginas externas
         const urlsExternas = [
@@ -90,10 +100,22 @@
             'https://bunnym9.github.io/SportCenter/nfl.html'
         ];
 
-        // Função para carregar a página externa no iframe
+        // Função para carregar a página externa no iframe e mostrar o conteúdo
         function carregarPaginaExterna(index) {
             const urlExterna = urlsExternas[index];
             iframeResultado.src = urlExterna;
+
+            // Ocultar o iframe enquanto a página carrega
+            iframeResultado.style.display = 'none';
+
+            // Mostrar o conteúdo de carregamento
+            loadingDiv.style.display = 'block';
+
+            // Esperar um breve momento antes de mostrar o iframe (apenas para simular carregamento)
+            setTimeout(() => {
+                loadingDiv.style.display = 'none';
+                iframeResultado.style.display = 'block';
+            }, 1000); // Tempo de espera em milissegundos (1 segundo)
         }
 
         // Adicionar eventos de clique aos botões
