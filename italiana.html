@@ -39,7 +39,7 @@
         // Função para carregar notícias da Serie A Italiana
         function carregarNoticias() {
             // Fazendo uma solicitação à API da ESPN para as notícias da Serie A Italiana (usando HTTPS)
-            fetch('http://site.api.espn.com/apis/site/v2/sports/soccer/ita.1/teams')
+            fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/ita.1/teams')
                 .then(response => response.json())
                 .then(data => {
                     const noticiasDiv = document.getElementById('noticias');
@@ -69,7 +69,7 @@
         // Função para carregar resultados da Serie A Italiana
         function carregarResultados() {
             // Fazendo uma solicitação à API da ESPN para os resultados da Serie A Italiana (usando HTTPS)
-            fetch('http://site.api.espn.com/apis/site/v2/sports/soccer/ita.1/scoreaboard')
+            fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/ita.1/scoreboard')
                 .then(response => response.json())
                 .then(data => {
                     const resultadosDiv = document.getElementById('resultados');
