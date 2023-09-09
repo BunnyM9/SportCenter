@@ -13,10 +13,7 @@
         }
 
         header {
-            background-image: url('https://imgur.com/0rCJikj.png');
-            background-size: cover; /* Faz a imagem cobrir todo o elemento */
-            background-position: center center; /* Centraliza a imagem horizontal e verticalmente */
-            background-repeat: no-repeat; /* Evita a repetição da imagem */
+            background-color: #333;
             color: white;
             text-align: center;
             padding: 10px;
@@ -51,7 +48,6 @@
         #resultados iframe {
             width: 100%;
             height: 500px; /* Altura do iframe */
-            display: none; /* Inicialmente oculto */
         }
 
         footer {
@@ -76,18 +72,17 @@
         <p>Aqui você encontrará informações sobre eventos esportivos e resultados em tempo real.</p>
     </div>
     <div id="resultados">
-        <!-- Conteúdo inicial -->
-        <h3>Conteúdo Inicial</h3>
-        <p>Este é o conteúdo que aparecerá antes de clicar nos botões.</p>
+        <!-- O iframe para exibir a página externa -->
+        <iframe id="iframeResultado" src=""></iframe>
     </div>
     <footer>
         &copy; 2023 Meu Site de Esportes
     </footer>
 
     <script>
-        // JavaScript para abrir as páginas externas em uma nova janela/guia
+        // JavaScript para carregar o conteúdo das páginas externas
+        const iframeResultado = document.getElementById('iframeResultado');
         const botoes = document.querySelectorAll('nav button');
-        const conteudoInicial = document.getElementById('resultados');
 
         // URLs das páginas externas
         const urlsExternas = [
@@ -95,16 +90,16 @@
             'https://bunnym9.github.io/SportCenter/nfl.html'
         ];
 
-        // Função para abrir a página externa em uma nova janela/guia
-        function abrirPaginaExterna(index) {
+        // Função para carregar a página externa no iframe
+        function carregarPaginaExterna(index) {
             const urlExterna = urlsExternas[index];
-            window.open(urlExterna, '_blank');
+            iframeResultado.src = urlExterna;
         }
 
         // Adicionar eventos de clique aos botões
         botoes.forEach((botao, index) => {
             botao.addEventListener('click', () => {
-                abrirPaginaExterna(index);
+                carregarPaginaExterna(index);
             });
         });
     </script>
