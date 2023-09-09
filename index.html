@@ -51,6 +51,7 @@
         #resultados iframe {
             width: 100%;
             height: 500px; /* Altura do iframe */
+            display: none; /* Inicialmente oculto */
         }
 
         footer {
@@ -90,6 +91,7 @@
         // JavaScript para carregar o conteúdo das páginas externas
         const iframeResultado = document.getElementById('iframeResultado');
         const botoes = document.querySelectorAll('nav button');
+        const conteudoInicial = document.getElementById('resultados');
 
         // URLs das páginas externas
         const urlsExternas = [
@@ -97,10 +99,16 @@
             'https://bunnym9.github.io/SportCenter/nfl.html'
         ];
 
-        // Função para carregar a página externa no iframe
+        // Função para carregar a página externa no iframe e ocultar o conteúdo inicial
         function carregarPaginaExterna(index) {
             const urlExterna = urlsExternas[index];
             iframeResultado.src = urlExterna;
+            
+            // Oculta o conteúdo inicial
+            conteudoInicial.style.display = 'none';
+            
+            // Exibe o iframe
+            iframeResultado.style.display = 'block';
         }
 
         // Adicionar eventos de clique aos botões
