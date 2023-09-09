@@ -79,17 +79,13 @@
         <!-- Conteúdo inicial -->
         <h3>Conteúdo Inicial</h3>
         <p>Este é o conteúdo que aparecerá antes de clicar nos botões.</p>
-
-        <!-- O iframe para exibir a página externa -->
-        <iframe id="iframeResultado" src=""></iframe>
     </div>
     <footer>
         &copy; 2023 Meu Site de Esportes
     </footer>
 
     <script>
-        // JavaScript para carregar o conteúdo das páginas externas
-        const iframeResultado = document.getElementById('iframeResultado');
+        // JavaScript para abrir as páginas externas em uma nova janela/guia
         const botoes = document.querySelectorAll('nav button');
         const conteudoInicial = document.getElementById('resultados');
 
@@ -99,22 +95,16 @@
             'https://bunnym9.github.io/SportCenter/nfl.html'
         ];
 
-        // Função para carregar a página externa no iframe e ocultar o conteúdo inicial
-        function carregarPaginaExterna(index) {
+        // Função para abrir a página externa em uma nova janela/guia
+        function abrirPaginaExterna(index) {
             const urlExterna = urlsExternas[index];
-            iframeResultado.src = urlExterna;
-            
-            // Oculta o conteúdo inicial
-            conteudoInicial.style.display = 'none';
-            
-            // Exibe o iframe
-            iframeResultado.style.display = 'block';
+            window.open(urlExterna, '_blank');
         }
 
         // Adicionar eventos de clique aos botões
         botoes.forEach((botao, index) => {
             botao.addEventListener('click', () => {
-                carregarPaginaExterna(index);
+                abrirPaginaExterna(index);
             });
         });
     </script>
