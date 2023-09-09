@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notícias da Premier League</title>
+    <title>Resultados e Notícias da Premier League</title>
     <style>
         body {
             background-color: black;
@@ -26,6 +26,10 @@
     <header>
         <h1>Premier League</h1>
     </header>
+    <div id="resultados">
+        <h2>Resultados</h2>
+        <ul></ul>
+    </div>
     <div id="noticias">
         <h2>Notícias da Premier League</h2>
         <ul></ul>
@@ -46,7 +50,9 @@
                         data.articles.forEach(article => {
                             const li = document.createElement('li');
                             li.innerHTML = `
-                                <strong>Título:</strong> <a href="${article.links.web.href}" target="_blank">${article.headline}</a><br>
+                                <strong>Título:</strong> ${article.headline}<br>
+                                <strong>Resumo:</strong> ${article.description}<br>
+                                <strong>Link:</strong> <a href="${article.links.web.href}" target="_blank">Leia mais</a><br>
                             `;
                             ul.appendChild(li);
                         });
@@ -61,7 +67,41 @@
                 });
         }
 
-        // Carregar notícias
+        // Função para carregar resultados da Premier League
+        function carregarResultados() {
+            // Fazendo uma solicitação à API da ESPN para os resultados da Premier League (usando HTTPS)
+            fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard')
+                .then(response => response.json())
+                .then(data => {
+                    const resultadosDiv = document.getElementById('resultados');
+                    const ul = resultadosDiv.querySelector('ul');
+
+                    // Verificando se há jogos na data atual
+                    if (data && data.events && data.events.length > 0) {
+                        data.events.forEach(event => {
+                            const li = document.createElement('li');
+                            li.innerHTML = `
+                                <strong>Jogo:</strong> ${event.name}<br>
+                                <strong>Status:</strong> ${event.status.type.description}<br>
+                                <strong>Data:</strong> ${new Date(event.date).toLocaleDateString()}<br>
+                                <strong>Hora:</strong> ${new Date(event.date).toLocaleTimeString()}<br>
+                                <strong>Resultado:</strong> ${event.competitions[0].competitors[0].score} - ${event.competitions[0].competitors[1].score}<br>
+                            `;
+                            ul.appendChild(li);
+                        });
+                    } else {
+                        const li = document.createElement('li');
+                        li.textContent = 'Não há jogos programados para hoje.';
+                        ul.appendChild(li);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar resultados da Premier League:', error);
+                });
+        }
+
+        // Carregar resultados e notícias
+        carregarResultados();
         carregarNoticias();
     </script>
 </body>
