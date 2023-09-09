@@ -146,27 +146,7 @@
                 carregarPaginaExterna(index);
             });
         });
-      const gallery = document.querySelector('.gallery');
-        const images = [
-            "https://imgur.com/WSCWoNT.png",
-            "https://imgur.com/8vNvByO.png",
-            "https://imgur.com/GCv6K4q.png"
-        ];
-        let currentIndex = 0;
-
-        function updateGallery() {
-            gallery.innerHTML = `<div class="image"><img src="${images[currentIndex]}" alt="Imagem ${currentIndex + 1}"></div>`;
-        }
-
-        function nextImage() {
-            currentIndex++;
-            if (currentIndex >= images.length) {
-                currentIndex = 0;
-            }
-            updateGallery();
-        }
-
-        setInterval(nextImage, 3000); 
+    
     </script>
 </body>
 </html>
