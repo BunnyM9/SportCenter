@@ -62,6 +62,20 @@
             padding: 10px;
             /* Remova a propriedade position: absolute */
         }
+          .gallery {
+            display: flex;
+            overflow: hidden;
+        }
+
+        .image {
+            width: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .image img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -80,11 +94,17 @@
         <!-- O iframe para exibir a página externa -->
         <iframe id="iframeResultado" src=""></iframe>
         <!-- Conteúdo de carregamento -->
-        <div id="loading">
-            <p>Bem-vindo ao Sport Center: O Seu Destino para Placares e Notícias Esportivas
-
-No Sport Center, você encontrará placares atualizados em tempo real e as últimas notícias sobre seus esportes favoritos.<br> Este é o lugar ideal para os amantes do esporte se manterem informados e acompanharem suas equipes em ação.<br> Explore nosso site e mergulhe no mundo emocionante dos esportes conosco!</p>
+        <div class="gallery">
+        <div class="image">
+            <img src="https://imgur.com/WSCWoNT.png" alt="Imagem 1">
         </div>
+        <div class="image">
+            <img src="https://imgur.com/8vNvByO.png" alt="Imagem 2">
+        </div>
+        <div class="image">
+            <img src="https://imgur.com/GCv6K4q.png" alt="Imagem 3">
+        </div>
+    </div>
     </div>
     <footer>
         &copy; 2023 Meu Site de Esportes
@@ -126,6 +146,32 @@ No Sport Center, você encontrará placares atualizados em tempo real e as últi
                 carregarPaginaExterna(index);
             });
         });
+        const gallery = document.querySelector('.gallery');
+        const images = document.querySelectorAll('.image');
+        let currentIndex = 0;
+
+        function updateGallery() {
+            const translateX = currentIndex * -100;
+            gallery.style.transform = `translateX(${translateX}%)`;
+        }
+
+        function nextImage() {
+            currentIndex++;
+            if (currentIndex >= images.length) {
+                currentIndex = 0;
+            }
+            updateGallery();
+        }
+
+        function prevImage() {
+            currentIndex--;
+            if (currentIndex < 0) {
+                currentIndex = images.length - 1;
+            }
+            updateGallery();
+        }
+
+        setInterval(nextImage, 3000); 
     </script>
 </body>
 </html>
